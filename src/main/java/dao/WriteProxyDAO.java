@@ -22,6 +22,8 @@ public class WriteProxyDAO {
 
             try (Connection connection = DriverManager.getConnection(DB_URL, USER, PASS)) {
 
+                deleteTableData();
+
                 for (Proxy proxyforimport : proxylist) {
 
                     Timestamp timestamp = Timestamp.valueOf(proxyforimport.timestamp);
