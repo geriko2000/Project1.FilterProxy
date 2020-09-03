@@ -5,6 +5,7 @@ import proxygen.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 public class WriteProxyDAO {
@@ -23,12 +24,14 @@ public class WriteProxyDAO {
 
                 for (Proxy proxyforimport : proxylist) {
 
+                    Timestamp timestamp = Timestamp.valueOf(proxyforimport.timestamp);
+
                     String createsql = "INSERT INTO proxies (country, host, type, timestamp, port, connecttimeout, speed) Values (?, ?, ?, ?, ?, ?, ?)";
                     PreparedStatement preparedStatement = connection.prepareStatement(createsql);
                     preparedStatement.setString(1, proxyforimport.country);
                     preparedStatement.setString(2, proxyforimport.host);
                     preparedStatement.setString(3, proxyforimport.type);
-                    preparedStatement.setString(4, proxyforimport.timestamp);
+                    preparedStatement.setTimestamp(4, timestamp);
                     preparedStatement.setInt(5, proxyforimport.port);
                     preparedStatement.setInt(6, proxyforimport.connecttimeout);
                     preparedStatement.setInt(7, proxyforimport.speed);

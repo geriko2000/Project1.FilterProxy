@@ -1,5 +1,6 @@
 package proxygen;
 
+import java.time.LocalDateTime;
 import java.util.Random;
 import java.util.ArrayList;
 
@@ -24,7 +25,7 @@ public class ProxyGen {
     }
 
     private String generateHost() {
-        String host = new String();
+        String host;
         Random rip1 = new Random();
         Random rip2 = new Random();
         Random rip3 = new Random();
@@ -34,6 +35,7 @@ public class ProxyGen {
         int ip3 = rip3.nextInt(255);
         int ip4 = rip4.nextInt(255);
         host = ip1 + "." + ip2 + "." + ip3 + "." + ip4;
+
         return host;
     }
 
@@ -59,8 +61,7 @@ public class ProxyGen {
         return hosts.get(rh.nextInt(4));
     }
 
-    private String generateTimestamp() {
-        String timestamp = new String();
+    private LocalDateTime generateTimestamp() {
         Random ry = new Random();
         Random rm = new Random();
         Random rd = new Random();
@@ -68,62 +69,17 @@ public class ProxyGen {
         Random rmin = new Random();
         Random rs = new Random();
         Random rms = new Random();
-        int year = ry.nextInt(2020 - 2019 + 1);
-        year += 2019;
+        int year = ry.nextInt(2020 - 2019 + 1) + 2019;
         int month = rm.nextInt(12) + 1;
         int day = rd.nextInt(31) + 1;
-        if (month == 2 && day > 28) {
-            day = day - 3;
-        } else {
-            if ((month % 2 == 0 && month != 8) && day == 31) {
-                day = day - 1;
-            }
-        }
         int hour = rh.nextInt(23);
         int minute = rmin.nextInt(59);
         int second = rs.nextInt(59);
         int milsec = rms.nextInt(999999);
-        timestamp = year + "-";
-        if (month < 10) {
-            timestamp += "0" + month + "-";
-        } else timestamp += month + "-";
 
-        if (day < 10) {
-            timestamp += "0" + day + " ";
-        } else timestamp += day + " ";
+        LocalDateTime timestamp = LocalDateTime.of(year, month, day, hour, minute, second, milsec);
 
-        if (hour < 10) {
-            timestamp += "0" + hour + ":";
-        } else timestamp += hour + ":";
 
-        if (minute < 10) {
-            timestamp += "0" + minute + ":";
-        } else timestamp += minute + ":";
-
-        if (second < 10) {
-            timestamp += "0" + second + ".";
-        } else timestamp += second + ".";
-
-        /*if (milsec < 10) {
-            timestamp += "00000" + milsec;
-            return timestamp;
-        } else if (milsec < 100) {
-            timestamp += "0000" + milsec;
-            return timestamp;
-        } else if (milsec < 1000) {
-            timestamp += "000" + milsec;
-            return timestamp;
-        } else if (milsec < 10000) {
-            timestamp += "00" + milsec;
-            return timestamp;
-        } else if (milsec < 100000) {
-            timestamp += "0" + milsec;
-            return timestamp;
-        } else {
-            timestamp += milsec;
-            return timestamp;
-        }*/
-        timestamp += milsec;
         return timestamp;
     }
 
