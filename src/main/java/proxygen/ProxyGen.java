@@ -104,7 +104,7 @@ public class ProxyGen {
             timestamp += "0" + second + ".";
         } else timestamp += second + ".";
 
-        if (milsec < 10) {
+        /*if (milsec < 10) {
             timestamp += "00000" + milsec;
             return timestamp;
         } else if (milsec < 100) {
@@ -122,9 +122,11 @@ public class ProxyGen {
         } else {
             timestamp += milsec;
             return timestamp;
-        }
-
+        }*/
+        timestamp += milsec;
+        return timestamp;
     }
+
 
     public ArrayList proxyGen(int count) {
         ArrayList<Proxy> proxylist = new ArrayList<Proxy>();
