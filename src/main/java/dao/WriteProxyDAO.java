@@ -22,7 +22,7 @@ public class WriteProxyDAO {
 
             try (Connection connection = DriverManager.getConnection(DB_URL, USER, PASS)) {
 
-                deleteTableData();
+                //deleteTableData();
 
                 for (Proxy proxyforimport : proxylist) {
 

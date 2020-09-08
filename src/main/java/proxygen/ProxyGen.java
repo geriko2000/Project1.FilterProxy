@@ -9,18 +9,21 @@ public class ProxyGen {
         Random rp = new Random();
         int port = rp.nextInt(65535 - 1024 + 1);
         port += 1024;
+
         return port;
     }
 
     private int generateTimeout() {
         Random rt = new Random();
         int timeout = rt.nextInt(5000) + 1;
+
         return timeout;
     }
 
     private int generateSpeed() {
         Random rs = new Random();
         int speed = rs.nextInt(100) + 1;
+
         return speed;
     }
 
@@ -48,6 +51,7 @@ public class ProxyGen {
         country.add("IN");
         country.add("CA");
         Random rc = new Random();
+
         return country.get(rc.nextInt(6));
     }
 
@@ -58,6 +62,7 @@ public class ProxyGen {
         hosts.add("socks5");
         hosts.add("socks4");
         Random rh = new Random();
+
         return hosts.get(rh.nextInt(4));
     }
 
@@ -79,7 +84,6 @@ public class ProxyGen {
 
         LocalDateTime timestamp = LocalDateTime.of(year, month, day, hour, minute, second, milsec);
 
-
         return timestamp;
     }
 
@@ -97,6 +101,7 @@ public class ProxyGen {
             newproxy.connecttimeout = generateTimeout();
             proxylist.add(newproxy);
         }
+
         return proxylist;
     }
 }
