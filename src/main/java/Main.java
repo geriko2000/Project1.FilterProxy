@@ -18,13 +18,10 @@ public class Main {
             String connecttimeout = req.queryParams("connect_timeout");
             String interval = req.queryParams("interval");
 
-
+            ProxyFilter.proxyFilter(country, type, speed, connecttimeout, interval);
 
             return country + " " + type + " " + speed + " " + connecttimeout + " " + interval + " ok";
         });
-
-        ArrayList<Proxy> test;
-        test = GetProxyDAO.getProxyFromTable();
 
     }
 

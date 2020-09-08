@@ -1,6 +1,7 @@
 package dao;
 
 import proxy.Proxy;
+
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -24,7 +25,7 @@ public class GetProxyDAO {
                 PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM proxies");
                 ResultSet resultSet = preparedStatement.executeQuery();
 
-                while (resultSet.next()){
+                while (resultSet.next()) {
 
                     Proxy newProxy = new Proxy();
                     newProxy.country = resultSet.getString("country");
@@ -38,7 +39,6 @@ public class GetProxyDAO {
 
                     proxylist.add(newProxy);
 
-                    System.out.println(newProxy.country);
                 }
 
                 System.out.println("Table imported successfully");
