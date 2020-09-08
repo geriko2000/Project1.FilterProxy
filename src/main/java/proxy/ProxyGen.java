@@ -44,12 +44,12 @@ public class ProxyGen {
 
     private String generateCountry() {
         ArrayList<String> country = new ArrayList<String>();
-        country.add("US");
-        country.add("RU");
-        country.add("VN");
-        country.add("DK");
-        country.add("IN");
-        country.add("CA");
+        country.add("us");
+        country.add("ru");
+        country.add("vn");
+        country.add("dk");
+        country.add("in");
+        country.add("ca");
         Random rc = new Random();
 
         return country.get(rc.nextInt(6));
@@ -80,7 +80,7 @@ public class ProxyGen {
         int hour = rh.nextInt(23);
         int minute = rmin.nextInt(59);
         int second = rs.nextInt(59);
-        int milsec = rms.nextInt(999999);
+        int milsec = rms.nextInt(999);
 
         LocalDateTime timestamp = LocalDateTime.of(year, month, day, hour, minute, second, milsec);
 
