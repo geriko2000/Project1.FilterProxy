@@ -1,6 +1,6 @@
 package dao;
 
-import proxygen.Proxy;
+import proxy.Proxy;
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;

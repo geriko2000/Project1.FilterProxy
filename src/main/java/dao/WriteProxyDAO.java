@@ -1,6 +1,6 @@
 package dao;
 
-import proxygen.*;
+import proxy.*;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

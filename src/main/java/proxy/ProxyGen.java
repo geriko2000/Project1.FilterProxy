@@ -1,4 +1,4 @@
-package proxygen;
+package proxy;
 
 import java.time.LocalDateTime;
 import java.util.Random;
