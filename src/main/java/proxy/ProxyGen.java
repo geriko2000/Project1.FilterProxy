@@ -92,13 +92,13 @@ public class ProxyGen {
         ArrayList<Proxy> proxylist = new ArrayList<Proxy>();
         for (int i = 0; i < count; i++) {
             Proxy newproxy = new Proxy();
-            newproxy.country = generateCountry();
-            newproxy.host = generateHost();
-            newproxy.port = generatePort();
-            newproxy.speed = generateSpeed();
-            newproxy.timestamp = generateTimestamp();
-            newproxy.type = generateType();
-            newproxy.connecttimeout = generateTimeout();
+            newproxy.setCountry(generateCountry());
+            newproxy.setHost(generateHost());
+            newproxy.setPort(generatePort());
+            newproxy.setSpeed(generateSpeed());
+            newproxy.setTimestamp(generateTimestamp());
+            newproxy.setType(generateType());
+            newproxy.setConnecttimeout(generateTimeout());
             proxylist.add(newproxy);
         }
 

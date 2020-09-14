@@ -28,14 +28,13 @@ public class GetProxyDAO {
                 while (resultSet.next()) {
 
                     Proxy newProxy = new Proxy();
-                    newProxy.country = resultSet.getString("country");
-                    newProxy.host = resultSet.getString("host");
-                    newProxy.type = resultSet.getString("type");
-                    Timestamp timestamp = resultSet.getTimestamp("timestamp");
-                    newProxy.timestamp = timestamp.toLocalDateTime();
-                    newProxy.port = resultSet.getInt("port");
-                    newProxy.connecttimeout = resultSet.getInt("connecttimeout");
-                    newProxy.speed = resultSet.getInt("speed");
+                    newProxy.setCountry(resultSet.getString("country"));
+                    newProxy.setHost(resultSet.getString("host"));
+                    newProxy.setType(resultSet.getString("type"));
+                    newProxy.setTimestamp(resultSet.getTimestamp("timestamp").toLocalDateTime());
+                    newProxy.setPort(resultSet.getInt("port"));
+                    newProxy.setConnecttimeout(resultSet.getInt("connecttimeout"));
+                    newProxy.setSpeed(resultSet.getInt("speed"));
 
                     proxylist.add(newProxy);
 

@@ -4,6 +4,7 @@ import proxy.*;
 import dao.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
     public static void main(String args[]) {
@@ -12,17 +13,20 @@ public class Main {
 
         get("/", (req, res) -> "hello there, write proxy");
         get("/proxy", (req, res) -> {
+            System.out.println(req.queryParams());
+
             String country = req.queryParams("country");
             String type = req.queryParams("type");
             String speed = req.queryParams("speed");
-            String connecttimeout = req.queryParams("connect_timeout");
+            String connectTimeout = req.queryParams("connect_timeout");
             String interval = req.queryParams("interval");
 
-            ArrayList<Proxy> proxylist = new ArrayList<Proxy>();
+            List<Proxy> proxyList = ProxyFilter.proxyFilter(country, type, speed, connectTimeout, interval);
 
-            System.out.println(ProxyFilter.proxyFilter(country, type, speed, connecttimeout, interval));
+            System.out.println(proxyList);
 
-            return country + " " + type + " " + speed + " " + connecttimeout + " " + interval + " ok";
+            return country + " " + type + " " + speed + " " + connectTimeout + " " + interval + " ok";
+//            return "ok";
         });
 
     }

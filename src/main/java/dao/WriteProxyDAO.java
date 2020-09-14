@@ -26,17 +26,17 @@ public class WriteProxyDAO {
 
                 for (Proxy proxyforimport : proxylist) {
 
-                    Timestamp timestamp = Timestamp.valueOf(proxyforimport.timestamp);
+                    Timestamp timestamp = Timestamp.valueOf(proxyforimport.getTimestamp());
 
                     String createsql = "INSERT INTO proxies (country, host, type, timestamp, port, connecttimeout, speed) Values (?, ?, ?, ?, ?, ?, ?)";
                     PreparedStatement preparedStatement = connection.prepareStatement(createsql);
-                    preparedStatement.setString(1, proxyforimport.country);
-                    preparedStatement.setString(2, proxyforimport.host);
-                    preparedStatement.setString(3, proxyforimport.type);
+                    preparedStatement.setString(1, proxyforimport.getCountry());
+                    preparedStatement.setString(2, proxyforimport.getHost());
+                    preparedStatement.setString(3, proxyforimport.getType());
                     preparedStatement.setTimestamp(4, timestamp);
-                    preparedStatement.setInt(5, proxyforimport.port);
-                    preparedStatement.setInt(6, proxyforimport.connecttimeout);
-                    preparedStatement.setInt(7, proxyforimport.speed);
+                    preparedStatement.setInt(5, proxyforimport.getPort());
+                    preparedStatement.setInt(6, proxyforimport.getConnecttimeout());
+                    preparedStatement.setInt(7, proxyforimport.getSpeed());
 
                     preparedStatement.executeUpdate();
                 }
