@@ -1,5 +1,6 @@
 import static spark.Spark.*;
 
+import dao.WriteProxyDAO;
 import generators.StringGen;
 import models.Proxy;
 import java.util.List;
@@ -17,10 +18,9 @@ public class Main {
             String speed = req.queryParams("speed");
             String connectTimeout = req.queryParams("connect_timeout");
             String interval = req.queryParams("interval");
-            StringGen.stringGen(country, type, speed, connectTimeout, interval);
+            WriteProxyDAO.getProxyFromTable(country, type, speed, connectTimeout, interval);
 
             return country + " " + type + " " + speed + " " + connectTimeout + " " + interval + " ok";
-//            return "ok";
         });
 
     }

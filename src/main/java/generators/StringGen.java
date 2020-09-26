@@ -3,6 +3,16 @@ package generators;
 import java.sql.Timestamp;
 
 public class StringGen {
+
+    public static String stringGen(String country, String type, String speed, String connectTimeout, String interval) {
+        String requestString = "SELECT " +
+                selectColumns(country, type, speed, connectTimeout, interval) +
+                "FROM proxies WHERE " +
+                whereValues(country, type, speed, connectTimeout, interval);
+        //System.out.println(requestString);
+        return requestString;
+    }
+
     private static String selectColumns(String country, String type, String speed, String connectTimeout, String interval) {
         String requestString = new String();
         if (country != null) {
@@ -47,13 +57,13 @@ public class StringGen {
 
         String requestString = new String();
         if (country != null) {
-            requestString = "country = " + country;
+            requestString = "country = '" + country + "'";
             if (type != null || speed != null || connectTimeout != null || interval != null) {
                 requestString += " AND ";
             }
         }
         if (type != null) {
-            requestString += "type = " + type;
+            requestString += "type = '" + type + "'";
             if (speed != null || connectTimeout != null || interval != null) {
                 requestString += " AND ";
             }
@@ -71,19 +81,9 @@ public class StringGen {
             }
         }
         if (interval != null) {
-            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-
-            requestString += "timestamp ";
+            Timestamp timestampInterval = new Timestamp(System.currentTimeMillis() - (Integer.parseInt(interval) * 60 * 1000));
+            requestString += "timestamp >= " + timestampInterval;
         }
         return requestString;
-    }
-
-    public static void stringGen(String country, String type, String speed, String connectTimeout, String interval) {
-        String requestString = "SELECT " +
-                selectColumns(country, type, speed, connectTimeout, interval) +
-                "FROM proxies WHERE " +
-                whereValues(country, type, speed, connectTimeout, interval);
-
-
     }
 }
