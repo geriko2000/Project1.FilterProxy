@@ -1,4 +1,4 @@
-package proxy;
+package models;
 
 import java.net.InetAddress;
 import java.sql.Timestamp;

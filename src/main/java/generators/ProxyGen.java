@@ -1,4 +1,6 @@
-package proxy;
+package generators;
+
+import models.Proxy;
 
 import java.time.LocalDateTime;
 import java.util.Random;
@@ -81,7 +83,6 @@ public class ProxyGen {
         int minute = rmin.nextInt(59);
         int second = rs.nextInt(59);
         int milsec = rms.nextInt(999);
-
         LocalDateTime timestamp = LocalDateTime.of(year, month, day, hour, minute, second, milsec);
 
         return timestamp;
