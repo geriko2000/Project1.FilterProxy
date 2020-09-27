@@ -8,8 +8,8 @@ public class JsonGen {
     public static ArrayList<String> jsonGen(ArrayList<Proxy> proxyList) {
         ArrayList<String> gsonArray = new ArrayList<String>();
         for(Proxy proxy : proxyList) {
-
-            String jsonInString = gson.toJson
+            Gson gson = new Gson();
+            String jsonInString = gson.
         }
 
         return gsonArray;
