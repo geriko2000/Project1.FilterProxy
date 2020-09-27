@@ -1,16 +1,14 @@
 import static spark.Spark.*;
 
 import dao.WriteProxyDAO;
-import generators.StringGen;
-import models.Proxy;
-import java.util.List;
+
 
 public class Main {
     public static void main(String args[]) {
         //ProxyGen rp = new ProxyGen();
         //WriteProxyDAO.writeProxyInTable(rp.proxyGen(10));
 
-        get("/", (req, res) -> "hello there, write proxy");
+        get("/", (req, res) -> "hello there, write /proxy");
         get("/proxy", (req, res) -> {
             System.out.println(req.queryParams());
             String country = req.queryParams("country");

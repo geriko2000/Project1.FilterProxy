@@ -1,7 +1,5 @@
 package models;
 
-import java.net.InetAddress;
-import java.sql.Timestamp;
 import java.time.*;
 
 public class Proxy {

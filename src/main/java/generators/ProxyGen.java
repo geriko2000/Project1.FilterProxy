@@ -90,19 +90,19 @@ public class ProxyGen {
 
 
     public ArrayList proxyGen(int count) {
-        ArrayList<Proxy> proxylist = new ArrayList<Proxy>();
+        ArrayList<Proxy> proxyList = new ArrayList<Proxy>();
         for (int i = 0; i < count; i++) {
-            Proxy newproxy = new Proxy();
-            newproxy.setCountry(generateCountry());
-            newproxy.setHost(generateHost());
-            newproxy.setPort(generatePort());
-            newproxy.setSpeed(generateSpeed());
-            newproxy.setTimestamp(generateTimestamp());
-            newproxy.setType(generateType());
-            newproxy.setConnecttimeout(generateTimeout());
-            proxylist.add(newproxy);
+            Proxy newProxy = new Proxy();
+            newProxy.setCountry(generateCountry());
+            newProxy.setHost(generateHost());
+            newProxy.setPort(generatePort());
+            newProxy.setSpeed(generateSpeed());
+            newProxy.setTimestamp(generateTimestamp());
+            newProxy.setType(generateType());
+            newProxy.setConnecttimeout(generateTimeout());
+            proxyList.add(newProxy);
         }
 
-        return proxylist;
+        return proxyList;
     }
 }

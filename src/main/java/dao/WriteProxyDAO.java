@@ -2,7 +2,6 @@ package dao;
 
 import generators.StringGen;
 import models.Proxy;
-
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -19,6 +18,18 @@ public class WriteProxyDAO {
                 ArrayList<Proxy> proxylist = new ArrayList<Proxy>();
                 String requestString = StringGen.stringGen(country, type, speed, connectTimeout, interval);
                 PreparedStatement preparedStatement = connection.prepareStatement(requestString);
+                ResultSet resultSet = preparedStatement.executeQuery();
+                while(resultSet.next()){
+                    Proxy newProxy = new Proxy();
+                    newProxy.setCountry(resultSet.getString("country"));
+                    newProxy.setType(resultSet.getString("type"));
+                    newProxy.setHost(resultSet.getString("host"));
+                    newProxy.setPort(resultSet.getInt("port"));
+                    newProxy.setConnecttimeout(resultSet.getInt("connect_timeout"));
+                    newProxy.setSpeed(resultSet.getInt("speed"));
+                    newProxy.setTimestamp(resultSet.getTimestamp("speed").toLocalDateTime());
+                    proxylist.add(newProxy);
+                }
                 System.out.println("Table imported successfully");
                 return proxylist;
             } catch (Exception e) {
@@ -41,13 +52,12 @@ public class WriteProxyDAO {
             try (Connection connection = DriverManager.getConnection(DB_URL, USER, PASS)) {
                 deleteTableData();
                 for (Proxy proxyforimport : proxylist) {
-                    Timestamp timestamp = Timestamp.valueOf(proxyforimport.getTimestamp());
                     String createsql = "INSERT INTO proxies (country, host, type, timestamp, port, connecttimeout, speed) Values (?, ?, ?, ?, ?, ?, ?)";
                     PreparedStatement preparedStatement = connection.prepareStatement(createsql);
                     preparedStatement.setString(1, proxyforimport.getCountry());
                     preparedStatement.setString(2, proxyforimport.getHost());
                     preparedStatement.setString(3, proxyforimport.getType());
-                    preparedStatement.setTimestamp(4, timestamp);
+                    preparedStatement.setTimestamp(4, Timestamp.valueOf(proxyforimport.getTimestamp()));
                     preparedStatement.setInt(5, proxyforimport.getPort());
                     preparedStatement.setInt(6, proxyforimport.getConnecttimeout());
                     preparedStatement.setInt(7, proxyforimport.getSpeed());
