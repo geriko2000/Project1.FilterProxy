@@ -17,6 +17,7 @@ public class WriteProxyDAO {
             try (Connection connection = DriverManager.getConnection(DB_URL, USER, PASS)) {
                 ArrayList<Proxy> proxylist = new ArrayList<Proxy>();
                 String requestString = StringGen.stringGen(country, type, speed, connectTimeout, interval);
+                System.out.println(requestString);
                 PreparedStatement preparedStatement = connection.prepareStatement(requestString);
                 ResultSet resultSet = preparedStatement.executeQuery();
                 while(resultSet.next()){
@@ -25,9 +26,9 @@ public class WriteProxyDAO {
                     newProxy.setType(resultSet.getString("type"));
                     newProxy.setHost(resultSet.getString("host"));
                     newProxy.setPort(resultSet.getInt("port"));
-                    newProxy.setConnecttimeout(resultSet.getInt("connect_timeout"));
+                    newProxy.setConnecttimeout(resultSet.getInt("connecttimeout"));
                     newProxy.setSpeed(resultSet.getInt("speed"));
-                    newProxy.setTimestamp(resultSet.getTimestamp("speed").toLocalDateTime());
+                    newProxy.setTimestamp(resultSet.getTimestamp("timestamp").toLocalDateTime());
                     proxylist.add(newProxy);
                 }
                 System.out.println("Table imported successfully");
@@ -50,7 +51,7 @@ public class WriteProxyDAO {
             String PASS = "1623";
             Class.forName("org.postgresql.Driver");
             try (Connection connection = DriverManager.getConnection(DB_URL, USER, PASS)) {
-                deleteTableData();
+                //deleteTableData();
                 for (Proxy proxyforimport : proxylist) {
                     String createsql = "INSERT INTO proxies (country, host, type, timestamp, port, connecttimeout, speed) Values (?, ?, ?, ?, ?, ?, ?)";
                     PreparedStatement preparedStatement = connection.prepareStatement(createsql);

@@ -5,9 +5,7 @@ import java.sql.Timestamp;
 public class StringGen {
 
     public static String stringGen(String country, String type, String speed, String connectTimeout, String interval) {
-        String requestString = "SELECT " +
-                selectColumns(country, type, speed, connectTimeout, interval) +
-                "FROM proxies WHERE " +
+        String requestString = "SELECT country, type, port, host, connecttimeout, speed, timestamp FROM proxies WHERE " +
                 whereValues(country, type, speed, connectTimeout, interval);
         //System.out.println(requestString);
         return requestString;
@@ -82,7 +80,7 @@ public class StringGen {
         }
         if (interval != null) {
             Timestamp timestampInterval = new Timestamp(System.currentTimeMillis() - (Integer.parseInt(interval) * 60 * 1000));
-            requestString += "timestamp >= " + timestampInterval;
+            requestString += "timestamp >= '" + timestampInterval + "'";
         }
         return requestString;
     }
