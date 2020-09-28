@@ -9,9 +9,9 @@ public class JsonGen {
         ArrayList<String> gsonArray = new ArrayList<String>();
         for(Proxy proxy : proxyList) {
             Gson gson = new Gson();
-            String jsonInString = gson.
+            String jsonString = gson.toJson(proxy);
+            gsonArray.add(jsonString);
         }
-
         return gsonArray;
     }
 }
