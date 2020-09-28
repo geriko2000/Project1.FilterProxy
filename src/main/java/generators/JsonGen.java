@@ -9,7 +9,7 @@ public class JsonGen {
         String jsonString = new String();
         for(Proxy proxy : proxyList) {
             Gson gson = new Gson();
-            jsonString += gson.toJson(proxy);
+            jsonString += gson.toJson(proxy) + "\n";
             //System.out.println(jsonString);
         }
         return jsonString;
