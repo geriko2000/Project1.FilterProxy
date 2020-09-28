@@ -5,7 +5,7 @@ import models.Proxy;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class WriteProxyDAO {
+public class DAO {
 
     public static ArrayList<Proxy> getProxyFromTable(String country, String type, String speed, String connectTimeout, String interval) {
 
@@ -17,7 +17,6 @@ public class WriteProxyDAO {
             try (Connection connection = DriverManager.getConnection(DB_URL, USER, PASS)) {
                 ArrayList<Proxy> proxylist = new ArrayList<Proxy>();
                 String requestString = StringGen.stringGen(country, type, speed, connectTimeout, interval);
-                System.out.println(requestString);
                 PreparedStatement preparedStatement = connection.prepareStatement(requestString);
                 ResultSet resultSet = preparedStatement.executeQuery();
                 while(resultSet.next()){

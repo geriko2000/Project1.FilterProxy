@@ -5,13 +5,13 @@ import models.Proxy;
 import java.util.ArrayList;
 
 public class JsonGen {
-    public static ArrayList<String> jsonGen(ArrayList<Proxy> proxyList) {
-        ArrayList<String> gsonArray = new ArrayList<String>();
+    public static String jsonGen(ArrayList<Proxy> proxyList) {
+        String jsonString = new String();
         for(Proxy proxy : proxyList) {
             Gson gson = new Gson();
-            String jsonString = gson.toJson(proxy);
-            gsonArray.add(jsonString);
+            jsonString += gson.toJson(proxy);
+            //System.out.println(jsonString);
         }
-        return gsonArray;
+        return jsonString;
     }
 }

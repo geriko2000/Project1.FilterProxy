@@ -1,25 +1,23 @@
 import static spark.Spark.*;
 
-import dao.WriteProxyDAO;
+import dao.DAO;
 import generators.JsonGen;
-import generators.ProxyGen;
 
 
 public class Main {
-    public static void main(String args[]) {
+    public static void main(String[] args) {
 //        ProxyGen rp = new ProxyGen();
 //        WriteProxyDAO.writeProxyInTable(rp.proxyGen(10));
 
         get("/", (req, res) -> "hello there, write /proxy");
         get("/proxy", (req, res) -> {
-            System.out.println(req.queryParams());
             String country = req.queryParams("country");
             String type = req.queryParams("type");
             String speed = req.queryParams("speed");
             String connectTimeout = req.queryParams("connect_timeout");
             String interval = req.queryParams("interval");
-            JsonGen.jsonGen(WriteProxyDAO.getProxyFromTable(country, type, speed, connectTimeout, interval));
-            return country + " " + type + " " + speed + " " + connectTimeout + " " + interval + " ok";
+            String jsonString = JsonGen.jsonGen(DAO.getProxyFromTable(country, type, speed, connectTimeout, interval));
+            return jsonString;
         });
 
     }
